@@ -1,0 +1,5 @@
+the number is the world type
+0=Natural
+1=Demonic
+2=Spiritual
+3=Abyss
