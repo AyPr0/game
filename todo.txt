@@ -1,11 +1,12 @@
 TODO (NOT ORDERED BY PRIORITY):
 
-1. add images and character designer (there are some variable made for this)
-2. add world levels
-3. add content
-4. add combat
-5. add settings
-6. verify function functionality
+1. add images and character designer (there are some variables made for this) (low prio)
+2. add world levels (after content)
+3. add content (after world gen/saves)
+4. add combat (after character gen probably)
+5. add settings (low prio)
+6. add npc generation and interactions (after content)
+7. verify function functionality
 
 CHANGES FROM OLD VERSION:
 
@@ -14,5 +15,4 @@ CHANGES FROM OLD VERSION:
 
 NOTES:
 
--working character sprites
--working on procedural worlds
+-working on procedural worlds (generation and saving/loading)
