@@ -4,6 +4,7 @@ n=''//str js convert to html game navigation (save/load)
 m=0//str keeps track of what menu is open
 x='none'//used to simplify script | 'none' is used instead of other empty values because of saving and loading problems
 w=''//str possible use for world type in file path
+_=''//str the path of the last scene used
 stringv=['tmp','tmp2','ally']//variables to initialize and save as strings
 numv=['tmpn','namegennum','fsize']//variables to initialize and save as numbers
 //arrays player
@@ -43,7 +44,7 @@ weight=[0,0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,4,4,4,5,5,5,6,6,7,7,8,9]//used f
 //chunks
 //[<terrain> <feature major> <feature minorx3?> <level> <population> <features coordinates> <major feature data> <feature minor datax3?>]
 //arrays general
-time=[0,0,0,0]//int Y/D/h/m
+time=[0,0,0,0,0]//int m/h/D/M/Y
 //script arrays/objects
 ids=[0,0]//int the highest number id used (pid/wid)
 newpsn=[]//names of temporary npcs (psn)
