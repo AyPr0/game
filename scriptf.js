@@ -8,11 +8,11 @@ function loadworld($a) {}
 function trait($a) {let $0=trt.indexOf($a);if($0>-1){return(trt[$0],trtl[$0],$0)}}
 function rng($a,$b=0) {return(Math.floor(Math.random()*($a+1))+$b)}
 function perc($a,$b) {return((100*Number($a/$b)).toFixed())}
-function next($a,$b=2) {let $1=document.createElement("script");document.body.appendChild($1);$1.id="script"+$b;$1.src="content/"+$a+".js"}
+function next($a=_,$b=2) {let $1=document.createElement("script");_=$a;document.body.appendChild($1);$1.id="script"+$b;$1.src="content/"+$a+".js"}
 function exp($a,$b=0) {if($a==undefined){let $0=['$hp','$ep','$qi'];function $F($c,$d){if(window[$c]<1){$xp[$d]+=Math.floor(50/$lvl[$d]);if($xp[$d]>99){$xp[$d]-=100;$lvl[$d]+=1;window[$c+'m']+=$lvl[$d]}}};$0.forEach($F)}else{$xp[$a]+=$b;if($xp[$a]>99){$xp[$a]-=100;$lvl[$a]+=1}}}
 function cycle($a,$b) {while($a<0){$a=$b-$a};return($a%$b)}
 function num($a) {let $1=$a;if($1<10&&$1>-10){if($1<0){$1='-0'+Math.abs($1)}else{$1='0'+$1}};return($1)}
-function ptime($a) {let $2=time;$2[0]+=$a[0];$2[1]+=$a[1];$2[2]+=$a[2];$2[3]+=$a[3];if($2[3]>59){$2[3]-=60;$2[2]+=1;$ep-=1;$qi+=1};if($2[2]>23){$2[2]-=24;$2[1]+=1};if($2[1]>364){$2[1]-=365;$2[0]+=1};nav('hour',$2[2]+':'+num($2[3]));time=$2}
+function ptime($a) {let $2=[60,24,28,14];time.forEach(($b,$c)=>{time[$c]+=$a[$c]});$2.forEach(($b,$c)=>{if(time[$c]>=$2[$c]){time[$c]-=$2[$c];time[$c+1]+=1}});if(time[3]==0){if(time[2]>0){time[3]+=1}};fun('hour',time[1]+':'+num(time[0]))}
 //html functions
 function btn($a,$b) {return('<button onclick="'+$b+'"><big>'+$a+'</big></button>')}
 function col($a,$b) {return("<font color="+$a+">"+$b+"</font>")}
