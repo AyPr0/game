@@ -9,18 +9,18 @@ Permission is hereby granted to any person obtaining a copy of this software and
 -->
 </head><body>
 <sidebar id="sidebar"><div id="gametitle">UNNAMED GAME<small> by EvZb</small><small>ඞ</small></div><div id="version">Version: 0 (DEV)</div>
-<div id="characterframe"><img id="tail" class="cimg"><img id="back" class="cimg"><img id="eff1" class="cimg"><img id="body" class="cimg"><img id="eff2" class="cimg"><img id="eyes" class="cimg"><img id="hair" class="cimg"><img id="back" class="cimg"><img id="bottom" class="cimg"><img id="top" class="cimg"><img id="hair2" class="cimg"><img id="bgimg" src="img/bg/space.png"></div>
+<div id="characterframe"><img id="tail" class="cimg"><img id="back" class="cimg"><img id="eff1" class="cimg"><img id="body" class="cimg"><img id="eff2" class="cimg"><img id="eyes" class="cimg"><img id="hair" class="cimg"><img id="back" class="cimg"><img id="bottom" class="cimg"><img id="top" class="cimg"><img id="hair2" class="cimg"><img id="bgimg"></div>
 <div id="gamestatustext" class="hid"><span id="hour">0:00</span></div>
 <div id="gamestatus" class="hid">
 Health: <span id="hptext"></span><div class="bar"><div id="hpbar" class="bar2"></div></div>
 Energy: <span id="eptext"></span><div class="bar"><div id="epbar" class="bar2"></div></div>
 Spirit: <span id="sptext"></span><div class="bar"><div id="spbar" class="bar2"></div></div></div>
 <div id="sidebarmenu" class="hid">
-<button class="menubutton" onclick="togdis(1)">CHARACTER</button>
-<button class="menubutton" onclick="togdis(2)">ITEMS</button>
-<button class="menubutton" onclick="togdis(3)">SAVE / LOAD</button>
-<button class="menubutton" onclick="togdis(4)">SETTINGS</button>
-<button class="menubutton" onclick="togdis(5)">CHEATS</button></div>
+<button class="menubutton" onclick="menu(1)">CHARACTER</button>
+<button class="menubutton" onclick="menu(2)">ITEMS</button>
+<button class="menubutton" onclick="menu(3)">SAVE / LOAD</button>
+<button class="menubutton" onclick="menu(4)">SETTINGS</button>
+<button class="menubutton" onclick="menu(5)">CHEATS</button></div>
 </sidebar><div id="infodis"><div id="menu"></div></div>
 <div id="game"><div id="txt"></div></div><div id="nav"><button onclick="elm('gamestatus').classList.remove('hid');elm('gamestatustext').classList.remove('hid');elm('sidebarmenu').classList.remove('hid');reset();next('other/intro')"><big>start</big></button></div>
-<a id="fdl" class="hid"></a><input id="fileinput" class="hid" type="file" onchange="loadfile(this.files[0])"/><script src="scriptv.js"></script><script src="scriptf.js"></script></body></html>
+<a id="fdl" class="hid"></a><input id="fileinput" class="hid" type="file" onchange="loadfile(this.files[0])"/><script src="variables.js"></script><script src="functions.js"></script></body></html>

@@ -1,3 +1,14 @@
+NOTES:
+
+- working on game sytems (crafting, inventory, item types)
+
+EXPECTED ISSUES:
+
+1. problems with saving and loading vairables and arrays
+1.5. problems with saving and loading in general
+2. problems with intro content
+3. broken functions
+
 TODO (NOT ORDERED BY PRIORITY):
 
 1. add images and character designer (there are some variables made for this) (low prio)
@@ -12,7 +23,3 @@ CHANGES FROM OLD VERSION:
 
 -changed variables and functions to be a little more readable by using comments
 -content has been removed for upgrade to procedural generation style
-
-NOTES:
-
--working on procedural worlds (generation and saving/loading)

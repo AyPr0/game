@@ -1,9 +1,7 @@
-(function () {let $0;let $1;let $2=[];let $3=``;let $4=[];let $5;
-    $0=function($a,$b){let $c=arr('itm',$b);$2.push(`-\${col('${cc[$c[4]]}',"${$a}")} [${$c[1]}] ${itypes[$c[2]]} (${$c[3]})`);$4.push($a+':'+$c[0])}
-    $1=function($a,$b){$3+=`\${col('#77B',"${desc.slots[$b]}")}: ${$a}<br>`}
-    itm.slice(1).forEach($0);eqp.forEach($1);
-    $5=`\${btn('use',"ieff(itm.indexOf(elm('itms').value));next('menu/items')")} \${lst('itms',"${$4.slice(1).join()}")} \${btn('discard',"rem('itm',itm.indexOf(elm('itms').value));next('menu/items')")}<br><br>`
-    $5+=`${$3}<br>\${col('#7B7','Items')}:<br>-Name [Description] type (amount)<br><br>${$2.slice(1).join('<br>')}`
-    fun('menu',$5)
+(function () {let $0=[];let $1=[];let $2=``
+    itm.slice(1).forEach(($a,$b)=>{let $c=arr('item',$b+1);$0.push($a+":"+(1+$b));$1.push(col(cc[$c[3]],$a)+` [ ${itype[$c[2]]} ] (${$c[1]})`)});
+    $2=`\${btn('use',"iuse(elm('itmes').value);next('menu/items',0)")} \${lst('items',"${$0.join(',')}")} \${btn('destroy',"rem('item',elm('items').value);next('menu/items',0)")}<br><br>`
+    $2+=`\${col('#7B7','Items')}:<br>-Name [ Type ] (Amount)<br><br>${$1.join('<br>')}`
+    fun('menu',$2)
     end(0)
 })()
