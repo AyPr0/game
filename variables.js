@@ -14,20 +14,20 @@ numv=['tmpn','namegennum','fsize']//variables to initialize and save as numbers
 tech=[x,x,x]//used in testing character tab (may be used elsewhere or removed later)
 imgv=['x']//the images used in the character frame
 stat=[1,0]//int [0money, 1speed]
-skill=[1,0,1,0,1,0]//int [0hands 1xp, 2sword 3xp, 4bow 5xp] skill type/xp
 atk=[0,0,0]//attack[0physical, 1energy, 2spirit]
 lvl=[0,0,0]//level[0physical,1energy, 2spirit] attack and defense are modified by level
 def=[0,0,0]//defense[0physical, 1energy, 2spirit]
 sen=[0,0,0]//senses[0physical, 1energy, 2spirit]
+hp=[1,1,0,0]//current,max,modifier,regen
+ep=[1,1,0,0]
+sp=[1,1,0,0]
+//arrays items
 itm=['Name']//str item name
 itma=[0]//int item amount
 itmt=[3]//int item stype
 itmr=[8]//int rarity (0=rare upto 8=notrare or 9=black)
 itmd=['Data']//str item data (data should depend on the item type)
 eqp=[x,x,x]//str (slots)
-hp=[1,1,0,0]//current,max,modifier,regen
-ep=[1,1,0,0]
-sp=[1,1,0,0]
 //arrays person
 pid=[0]//int
 psn=['name']//str
