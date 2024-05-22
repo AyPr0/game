@@ -1,11 +1,7 @@
 String.prototype.cut=function(index,length,add) {if(index<0) {index+=this.length;if(index<0) {index=0}};return this.slice(0,index)+(add||"")+this.slice(index+(length||0))}
 String.prototype.arr=function(index,replace=x,divider='!') {let a=this.split(divider);if(replace==x){return(a[index])}else{a[index]=replace;return(a.join(divider))}}
 //use functions
-function genpsn() {let $1=Array(person.length);$1[0]=pid[pid.length-1]+1;$1[1]=window['namegen'+namegennum]();$1[2]=String(rng(99999));while($1[2].length<6){$1[2]='0'+$1[2]};$1[3]=rng(4);$1[4]=rng(20,-10);$1[5]=rng(2);$1[6]=rng(81+18);$1[7]=0;add('person',$1);return($1[0])}
-function genworld($a=rng(3),$b=x,$c=1) {let $0=window['namegen'+ngen]().replace(' ','').slice(0,9);if($b!=x){$0=$b};world.push($0);wgen.push(Array.from(Array($c*$c)).map(()=>weight[rng(weight.length-1)]).join(''));wtype=desc.atype[$a];wppl.push(x)}//generates a new world $a=wtype, $b=wname, $c=world size
-function genchunk($a,$b) {}
-function loadchunk($a) {}
-function loadworld($a) {}
+function genpsn() {return(window['namegen'+namegennum]()+'!'+rng(81,18)+'!'+rng(2)+rng(4)+rng(4)+rng(0)+rng(4)+rng(3))}
 function trait($a) {let $0=trt.indexOf($a);if($0>-1){return(trt[$0],trtl[$0],$0)}}
 function rng($a,$b=0) {return(Math.floor(Math.random()*($a+1))+$b)}
 function perc($a,$b) {return((100*Number($a/$b)).toFixed())}
@@ -20,7 +16,7 @@ function col($a,$b) {return("<font color="+$a+">"+$b+"</font>")}
 function fun($a,$b) {elm($a).innerHTML=eval('`'+$b+'`')}
 function cimg($a,$b) {if($a==undefined){}else{elm($a).src="img/"+$b}}
 function clothe($a,$b) {let $1=($c,$d)=>elm($c).src=eqp[2+$d].split('X')[2];if($a==undefined){slotc.forEach($1)}else{$1(slotc.indexOf($a-2),$b)}}//$a=slotc,$b=img
-function lst($a,$b,$c) {let $0='';let $2=$b.split(',');if($c!=undefined){$0=' onchange="'+$c+'"'};let $1='<select id="'+$a+'"'+$0+'>';function $F($c) {let $3=$2[$c].split(':');$1+=('<option value="'+$3[1]+'">'+$3[0]+'</option>')};Object.keys($2).forEach($F);$1+='</select>';return($1)}
+function lst($a,$b,$c) {let $0='';let $2=$b.split(',');let $3=($c)=>{let $4=$2[$c].split(':');$1+=('<option value="'+$4[1]+'">'+$4[0]+'</option>')};if($c!=undefined){$0=' onchange="'+$c+'"'};let $1='<select id="'+$a+'"'+$0+'>';Object.keys($2).forEach($3);$1+='</select>';return($1)}
 function ccolor($a,$b) {let $1=$img.slice(3,7);let $2=$img.slice(7,11);function $F($c,$d,$e) {elm("c"+(2+Number($d))+"img").style.filter="hue-rotate("+(36*$1[$d])+"deg) brightness("+(1-(0.2*$e))+")"};if($a==undefined){($1).forEach($F)}else{if($b==0){$2[$a]=($2[$a]+1)%5}else{$1[$a]=($1[$a]+1)%10};$F(0,$a,$2[$a]);$img=$img.slice(0,3).concat($1,$2).map(Number)}}
 //script functions
 function date() {return(Date().slice(4,-33))}
