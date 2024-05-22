@@ -1,5 +1,5 @@
-String.prototype.cut=function(index,cut,add) {if(index<0) {index+=this.length;if(index<0) {index=0}};return this.slice(0,index)+(add||"")+this.slice(index+(cut||0))}
-String.prototype.set=function(index,replace=x,divider='!') {let a=this.split(divider);if(replace==x){return(a[index])}else{a[index]=replace;return(a.join(divider))}}
+String.prototype.cut=function(index,length,add) {if(index<0) {index+=this.length;if(index<0) {index=0}};return this.slice(0,index)+(add||"")+this.slice(index+(length||0))}
+String.prototype.arr=function(index,replace=x,divider='!') {let a=this.split(divider);if(replace==x){return(a[index])}else{a[index]=replace;return(a.join(divider))}}
 //use functions
 function genpsn() {let $1=Array(person.length);$1[0]=pid[pid.length-1]+1;$1[1]=window['namegen'+namegennum]();$1[2]=String(rng(99999));while($1[2].length<6){$1[2]='0'+$1[2]};$1[3]=rng(4);$1[4]=rng(20,-10);$1[5]=rng(2);$1[6]=rng(81+18);$1[7]=0;add('person',$1);return($1[0])}
 function genworld($a=rng(3),$b=x,$c=1) {let $0=window['namegen'+ngen]().replace(' ','').slice(0,9);if($b!=x){$0=$b};world.push($0);wgen.push(Array.from(Array($c*$c)).map(()=>weight[rng(weight.length-1)]).join(''));wtype=desc.atype[$a];wppl.push(x)}//generates a new world $a=wtype, $b=wname, $c=world size

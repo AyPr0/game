@@ -1,5 +1,5 @@
-//restricted characters for variables [¦,§,°]
-//using strings as arrays split character[!]
+//restricted characters for variables [¦,§,°] (used for save data)
+//using strings as arrays split character[!,~,.] (mostly depends on the variable)
 //script variables
 version='0 (DEV)'
 t=''//str js convert to html game text (save/load)
@@ -30,9 +30,12 @@ itmd=['Data']//str item data (data should depend on the item type)
 eqp=[x,x,x]//str (slots)
 //arrays person
 pid=[0]//int
-psn=['name']//str
+psn=[x]//str name
+psna=[x]//str [organization name!organization level!specialty!specialty level]
+psnl=[x]//str location ex:'E0'
 ptrt=['000000']//str ['character,luck,charm,personality,fame,knowledge'] characters representing different trait values
-body=[0]//int body variant
+peqp=[x]//str ['weapon!weapon value!clothes!clothing value']
+body=[0]//int body/race variant
 pfav=[0]//int personal reputation/favor
 lvl=[0]//int level
 age=[0]//int age in years
@@ -40,12 +43,16 @@ pxp=[0]//int experience to level
 //arrays worlds
 wid=[0]//int the unique world number
 wname=[x]//str world name
-wgen=[x]//str world generated areas
 wtype=[x]//str world atype
+wdata=[x]//str for saving word data
 wppl=[x]//for saving and loading the people of each world
 weight=[0,0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,4,4,4,5,5,5,6,6,7,7,8,9]//used for rng wieghting ex: weight[rng(31)]
-//chunks
-//[<terrain> <feature major> <feature minorx3?> <level> <population> <features coordinates> <major feature data> <feature minor datax3?>]
+//loaded world data
+keys=[x]//str information for getting keys to certain areas
+locN=[x]//str directional location path/step [major!minor!terrain!!datamajor!!dataminor]
+locE=[x]
+locS=[x]
+locW=[x]
 //arrays general
 time=[0,0,0,0,0]//int m/h/D/M/Y
 //script arrays/objects
