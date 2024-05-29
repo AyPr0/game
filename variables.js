@@ -12,10 +12,9 @@ stringv=['tmp','tmp2','ally']//variables to initialize and save as strings
 numv=['tmpn','namegennum','fsize','cworldid']//variables to initialize and save as numbers
 //arrays player
 tech=[x,x,x]//used in testing character tab (may be used elsewhere or removed later)
-imgv=['x']//the images used in the character frame
 stat=[1,0]//int [0money, 1speed]
 aff=[x]//str affinity name
-afft=[0]//int affinity color type
+afft=[0]//int affinity type (Black, White) (Red, Green, Blue)
 afflvl=[]
 affxp=[]
 atk=[0,0,0]//attack[0physical, 1energy, 2spirit]
@@ -30,7 +29,7 @@ itm=['Name']//str item name
 itma=[0]//int item amount
 itmt=[3]//int item stype
 itmr=[8]//int rarity (0=rare upto 8=notrare or 9=black)
-itmd=['Data']//str item data (data should depend on the item type)
+itmd=[x]//str item data (data should depend on the item type)
 eqp=[x,x,x]//str (slots)
 //arrays person
 pid=[0]//int
@@ -39,7 +38,7 @@ psna=[x]//str [organization name!organization level!specialty!specialty level]
 psnl=[x]//str location ex:'E0'
 ptrt=['000000']//str ['character,luck,charm,personality,fame,knowledge'](ptrait) characters representing different trait values
 peqp=[x]//str ['weapon!weapon value!clothes!clothing value']
-race=['00']//str body/race variant
+race=['00']//str race+variant
 pfav=[0]//int personal reputation/favor
 lvl=[0]//int level
 age=[0]//int age in years
@@ -47,20 +46,15 @@ pxp=[0]//int experience to level
 //arrays worlds
 wid=[0]//int the unique world number
 wname=[x]//str world name
-wtype=[0]//int world atype Natural:0,Demonic:1,Spirit:2,Abyss:3
-wdata=[x]//str other combined world data
-wlocN=[x]//str for saving word data. combines directional data
-wlocE=[x]
-wlocS=[x]
-wlocW=[x]
+wtype=[0]//int world atype Natural:0,Spiritual:1
+wsize=[0]//int world chunk amount square ex: 3 for 3*3
+wchunk=[x]//coordinated/chunk data [chunk~chunk]
 wppl=[x]//for saving and loading the people of each world
 //loaded world data
-keys=[x]//str information for getting keys to certain areas
-locN=[x]//str directional location path/step [major!minor!terrain!!datamajor!!dataminor]
-locE=[x]
-locS=[x]
-locW=[x]
+chunk=[x]//str chunk data [major!minor!terrain!!datamajor!!dataminor]
 //arrays general
+imgv=[x]//the images used in the character frame
+pos=[0,0,0,0]//X,Y (Inside the current chunk) X,Y (The current chunk)
 tmppsn=[x]//str ['name!age!ptrt']
 time=[0,0,0,0,0]//int m/h/D/M/Y
 //script arrays/objects
@@ -68,8 +62,8 @@ ids=[0,0]//int the highest number id used (pid/wid)
 saves=[0,0,0,0,0,0,0]//used to track saves
 ss=[x,x,x]//default values for stringv varibles
 sn=[0,1,16,0]//default values for numv variables
-arrn=['wid','pid','sn','pfav','itma','itmt','itmr','time','trtl','trtx','kiv','lvl','pxp','dgr','stat','hp','ep','sp']//number array names (save/load)
-arrs=['ss','tech','newpsn','psn','body','psnp','psna','trt','kie','slot','eqp','itmd','itm','imgv']//string array names (save/load)
+arrn=['wid','pid','sn','pfav','itma','itmt','itmr','time','trtl','lvl','pxp','age','stat','hp','ep','sp']//number array names (save/load)
+arrs=['ss','tech','newpsn','psn','race','psnp','ptrt','peqp','slot','eqp','itmd','itm','imgv']//string array names (save/load)
 sv=[[],[],[],[],'','']// used in save/load functions
 cc=['#B44','#B4B','#B80','#BB4','#4B4','#44B','#4BB','#BBB','#888','#000']//color codes for stat number, etc
 ncon1=['b','ch','d','f','g','h','j','k','l','m','n','p','q','qu','r','s','sh','t','v','w','x','y','z']
@@ -78,10 +72,11 @@ ncon3=['el','la','v','an','or','ar','ri','ice','is','er','st','al','ea','b','no'
 nvow1=['a','an','ang','ao','e','en','eng','ei','i','in','o','ong','u','uo','ua']
 cfimg=["bgimg","tail","eff1","body","eff2","eyes","hair","back","bottom","top","hair2"]//the image layers to load in the character frame
 ptrait=['character(0Bad,1Neutral,2Good)','luck(0Bad,1Poor,2Normal,3Good,#Extreme)','charm(0Bad,1Low,2Normal,3Good,4High)','personality(0)','fame(0Unknown,1Low,2Medium,3High,4Exreme)','knowledge(0Stupid,1Poor,2Normal,3Good,Very Good)']
+races={'1':'Demon','2':'Elf','3':'Human','4':'Abyss','5':'Spirit','10':'Demon','20':'Elf','30':'Human','40':'Abyss','50':'Spirit','11':'Succubus','21':'Fox','31':'Cleric','41':'Curse','51':'Ghost','12':'Zombie','22':'Dog','32':'Alchemist','42':'Mimic','52':'God','13':'Vampire','23':'Cat','33':'Cultivator','43':'Slime','53':'Elemental'}
 //script category arrays
 world=['wid','wname','wtype','wdata','wlocN','wlocE','wlocS','wlocW','wppl']
 item=['itm','itma','itmt','itmr','itmd']
-itype=['Equipment','Charm','Consumable','Item','Consumable']//equip:(slots type)XstatXnumXetc,charm:truthyXeval,consumable:statXnumXetc,item:nothing,consumable:eval
+itype=['Equipment','Charm','Consumable','Item','Consumable','Material']//equip:(slots type)XstatXnumXetc,charm:truthyXeval,consumable:statXnumXetc,item:nothing,consumable:eval,material:amountXtypeX(affinityXlevel)
 slots=['weapon','top','bottom']
 slotc=['top','bottom']
 person=['pid','psn','ptrt','race','pfav','lvl','age','pxp']
