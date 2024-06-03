@@ -3,7 +3,7 @@
     case 0://intro
         tmpn=1;
         t=`Welcome to \${col('red','UNNAMED GAME')+' '+col('lightyellow','The general gameplay is still being developed.')} The game uses inspirations from many fantasy settings; some words may not match your preconception.<br><br>Navigate the game using the button (colored text) below.`
-        n=`\${btn('next',"next()")} - to character/world creation`
+        n=`\${btn('next',"next()")}`
         if(localStorage.UGS==undefined){localStorage['UGS']=saves.join()} break;
     case 1://player name
         tmpn=2;

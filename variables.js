@@ -14,7 +14,7 @@ numv=['tmpn','namegennum','fsize','cworldid']//variables to initialize and save 
 tech=[x,x,x]//used in testing character tab (may be used elsewhere or removed later)
 stat=[1,0]//int [0money, 1speed]
 aff=[x]//str affinity name
-afft=[0]//int affinity type (Black, White) (Red, Green, Blue)
+afft=[0]//int affinity type (0=Black, 1=White) (2=Red, 3=Green, 4=Blue)
 afflvl=[]
 affxp=[]
 atk=[0,0,0]//attack[0physical, 1energy, 2spirit]
@@ -27,10 +27,17 @@ sp=[1,1,0,0]
 //arrays items
 itm=['Name']//str item name
 itma=[0]//int item amount
-itmt=[3]//int item stype
+itmt=[3]//int item type
 itmr=[8]//int rarity (0=rare upto 8=notrare or 9=black)
 itmd=[x]//str item data (data should depend on the item type)
 eqp=[x,x,x]//str (slots)
+//arrays materials
+mat=[x]//str material name
+mata=[0]//int material amount
+matt=[0]//int material affinity type (0-4)
+matf=[0]//int material form (0=none,1=ingot,ect)
+matc=[0]//int material crafting usage (0=Cooking,1=Smithing,etc)
+matr=[8]//int rarity (0=rare upto 8=notrare or 9=black)
 //arrays person
 pid=[0]//int
 psn=[x]//str name
@@ -73,10 +80,14 @@ nvow1=['a','an','ang','ao','e','en','eng','ei','i','in','o','ong','u','uo','ua']
 cfimg=["bgimg","tail","eff1","body","eff2","eyes","hair","back","bottom","top","hair2"]//the image layers to load in the character frame
 ptrait=['character(0Bad,1Neutral,2Good)','luck(0Bad,1Poor,2Normal,3Good,#Extreme)','charm(0Bad,1Low,2Normal,3Good,4High)','personality(0)','fame(0Unknown,1Low,2Medium,3High,4Exreme)','knowledge(0Stupid,1Poor,2Normal,3Good,Very Good)']
 races={'1':'Demon','2':'Elf','3':'Human','4':'Abyss','5':'Spirit','10':'Demon','20':'Elf','30':'Human','40':'Abyss','50':'Spirit','11':'Succubus','21':'Fox','31':'Cleric','41':'Curse','51':'Ghost','12':'Zombie','22':'Dog','32':'Alchemist','42':'Mimic','52':'God','13':'Vampire','23':'Cat','33':'Cultivator','43':'Slime','53':'Elemental'}
+matform=[x,'Ingot','Bottle','Crystal','Bag','Chunk','Ball','Stack']
+afftype=['Black','White','Red','Green','Blue']
+matcraft=['Cooking','Smithing','Formation']
 //script category arrays
 world=['wid','wname','wtype','wdata','wlocN','wlocE','wlocS','wlocW','wppl']
 item=['itm','itma','itmt','itmr','itmd']
-itype=['Equipment','Charm','Consumable','Item','Consumable','Material']//equip:(slots type)XstatXnumXetc,charm:truthyXeval,consumable:statXnumXetc,item:nothing,consumable:eval,material:amountXtypeX(affinityXlevel)
+itype=['Equipment','Charm','Consumable','Item','Consumable']//equip:(slots type)XstatXnumXetc,charm:truthyXeval,consumable:statXnumXetc,item:nothing,consumable:eval,material:amountXtypeX(affinityXlevel)
 slots=['weapon','top','bottom']
 slotc=['top','bottom']
 person=['pid','psn','ptrt','race','pfav','lvl','age','pxp']
+material=['mat','mata','matt','matf','matc','matr']

@@ -1,5 +1,6 @@
 String.prototype.cut=function(index,length,add) {if(index<0) {index+=this.length;if(index<0) {index=0}};return this.slice(0,index)+(add||"")+this.slice(index+(length||0))}
-String.prototype.arr=function(index,replace=x,divider='!') {let a=this.split(divider);if(replace==x){return(a[index])}else{a[index]=replace;return(a.join(divider))}}
+String.prototype.arr=function(index,replace=x,divider='!') {let a=this.split(divider);if(replace==x){return(a[index])}else{a[index]=replace;return(a.join(divider))}}//Treat a string as an array with dividers. ex: '123!456' is ['123','456']
+Array.prototype.cyc=function(index){if(index<0){return(this.toReversed()[Math.abs(index)%this.length])};return(this[index%this.length])}//Get the overflow index value. ex: [1,2,3].cyc(1)==2 and [1,2,3].cyc(4)==2
 //use functions
 function genpsn() {return(window['namegen'+namegennum]()+'!'+rng(81,18)+'!'+rng(2)+rng(4)+rng(4)+rng(0)+rng(4)+rng(3))}
 function trait($a) {let $0=trt.indexOf($a);if($0>-1){return(trt[$0],trtl[$0],$0)}}
@@ -7,7 +8,6 @@ function rng($a,$b=0) {return(Math.floor(Math.random()*($a+1))+$b)}
 function perc($a,$b) {return((100*Number($a/$b)).toFixed())}
 function next($a=_,$b=2) {let $1=document.createElement("script");if($b>1){_=$a};document.body.appendChild($1);$1.id="script"+$b;$1.src="content/"+$a+".js"}
 function exp($a,$b=0,$c=1) {skill[$a]+=Math.floor($b*($c/skill[$a-1]));if(skill[$a]>99){skill[$a]-=100;skill[$a-1]+=1}}//$a=index of xp in skill. $b=xp add amount. $c=level of xp.
-function cycle($a,$b) {while($a<0){$a=$b-$a};return($a%$b)}
 function num($a) {let $1=$a;if($1<10&&$1>-10){if($1<0){$1='-0'+Math.abs($1)}else{$1='0'+$1}};return($1)}
 function ptime($a) {let $2=[60,24,28,14];time.forEach(($b,$c)=>{time[$c]+=$a[$c]});$2.forEach(($b,$c)=>{if(time[$c]>=$2[$c]){time[$c]-=$2[$c];time[$c+1]+=1}});if(time[3]==0&&time[2]>0){time[3]+=1};fun('hour',time[1]+':'+num(time[0]))}
 //html functions
