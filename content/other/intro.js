@@ -32,7 +32,7 @@
     case 6://start
         tmpn=7
         t=`You can now enter the world.`
-        n=`\${btn('enter',"tmpn=0;next('world/0/forest')")}`; break;
+        n=`\${btn('enter',"tmpn=0;wname=window['namegen'+namegennum]();next('world/0/forest')")}`; break;
     }; if(tmpn>1){n+=`<br><br>\${btn('back',"tmpn-=2;next()")}`}
     end()
 })()

@@ -84,7 +84,7 @@ matform=[x,'Ingot','Bottle','Crystal','Bag','Chunk','Ball','Stack']
 afftype=['Black','White','Red','Green','Blue']
 matcraft=['Cooking','Smithing','Formation']
 //script category arrays
-world=['wid','wname','wtype','wdata','wlocN','wlocE','wlocS','wlocW','wppl']
+world=['wid','wname','wtype','wsize','wchunk','wppl']
 item=['itm','itma','itmt','itmr','itmd']
 itype=['Equipment','Charm','Consumable','Item','Consumable']//equip:(slots type)XstatXnumXetc,charm:truthyXeval,consumable:statXnumXetc,item:nothing,consumable:eval,material:amountXtypeX(affinityXlevel)
 slots=['weapon','top','bottom']
