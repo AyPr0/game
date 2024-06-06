@@ -1,7 +1,9 @@
 String.prototype.cut=function(index,length,add) {if(index<0) {index+=this.length;if(index<0) {index=0}};return this.slice(0,index)+(add||"")+this.slice(index+(length||0))}
-String.prototype.arr=function(index,replace=x,divider='!') {let a=this.split(divider);if(replace==x){return(a[index])}else{a[index]=replace;return(a.join(divider))}}//Treat a string as an array with dividers. ex: '123!456' is ['123','456']
+String.prototype.arr=function(index,replace,divider='!') {let a=this.split(divider);if(replace==undefined){return(a[index])}else{a[index]=replace;return(a.join(divider))}}//Treat a string as an array with dividers. ex: '123!456' is ['123','456']
 Array.prototype.cyc=function(index){if(index<0){return(this.toReversed()[Math.abs(index)%this.length])};return(this[index%this.length])}//Get the overflow index value. ex: [1,2,3].cyc(1)==2 and [1,2,3].cyc(4)==2
 //use functions
+function loc($a=0,$b=0) {let $1=wsize[cworldid];return((cycle($1,pos[0]+$a)*$1)+cycle($1,pos[1]+$b))}//returns the chunk index for the relative pos
+function genchunks() {let $1=Array(wsize[cworldid]*wsize[cworldid]);chunk=Array.from($1,()=>{return(`${terrains[rng(terrains.length-1)]}!${majorfeatures[rng(majorfeatures.length-1)]}!${minorfeatures[rng(minorfeatures.length-1)]}`)});chunkd=Array.from($1,()=>{return("!!!!")})}
 function genpsn() {return(window['namegen'+namegennum]()+'!'+rng(81,18)+'!'+rng(2)+rng(4)+rng(4)+rng(0)+rng(4)+rng(3))}
 function trait($a) {let $0=trt.indexOf($a);if($0>-1){return(trt[$0],trtl[$0],$0)}}
 function rng($a,$b=0) {return(Math.floor(Math.random()*($a+1))+$b)}
@@ -19,6 +21,7 @@ function clothe($a,$b) {let $1=($c,$d)=>elm($c).src=eqp[2+$d].split('X')[2];if($
 function lst($a,$b,$c) {let $0='';let $2=$b.split(',');let $3=($c)=>{let $4=$2[$c].split(':');$1+=('<option value="'+$4[1]+'">'+$4[0]+'</option>')};if($c!=undefined){$0=' onchange="'+$c+'"'};let $1='<select id="'+$a+'"'+$0+'>';Object.keys($2).forEach($3);$1+='</select>';return($1)}
 function ccolor($a,$b) {let $1=$img.slice(3,7);let $2=$img.slice(7,11);function $F($c,$d,$e) {elm("c"+(2+Number($d))+"img").style.filter="hue-rotate("+(36*$1[$d])+"deg) brightness("+(1-(0.2*$e))+")"};if($a==undefined){($1).forEach($F)}else{if($b==0){$2[$a]=($2[$a]+1)%5}else{$1[$a]=($1[$a]+1)%10};$F(0,$a,$2[$a]);$img=$img.slice(0,3).concat($1,$2).map(Number)}}
 //script functions
+function cycle($a,$b) {if($b<0){return($a-Math.abs($b)%$a)}else{return($b%$a)}}//Get overflow number ex: cycle(5,2)=2 and cycle(5,7)=2
 function date() {return(Date().slice(4,-33))}
 function iuse($a) {let $1=arr('item',$a);let $2=$1[5].split('X');switch($1[2]){case 0:equip($a,$1,$2);break;case 1:if($2[0]){eval($2[1])};break;case 2:$2.forEach(($c,$d)=>{if($d%2==0){window[$c]=$b*$2[1+$d]}});$1[3]-=1;break;case 4:eval($2[0]);$1[3]-=1;break;};if($1[3]<1){rem('item',$a)}}//$a=item number, $b=modifier (-1 for dequip)
 function equip($a,$b,$c) {let $1=eqp.indexOf($b[0]);let $2=($d,$e)=>{if($e%2==0){window[$d]+=$1*Number($c[1+$e])}};if($1>-1){eqp[$1]=x;if(slotc.includes($c[0])){clothe($c.splice(0,1),$c.splice(0,1))};$1=-1;$c.forEach($2)}else{if(slotc.includes($c[0])){clothe($c.splice(0,1),$c.splice(0,1))};}}

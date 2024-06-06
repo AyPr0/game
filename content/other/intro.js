@@ -28,11 +28,11 @@
         tmpn=6
         t=`Choose the starting world type and size. It is suggested to start in your race's associated world.<br><br>World size is exponential (minimum 4 is recommended).`
         t+=`<br><br>Natural (Demon,Beast,Human) | Spiritual (Abyss,Spirit)<br><br>\${col('#B44','Currently, only the Natural world type is available')}.`
-        n=`World type: \${lst('wld',"Natural:0,Spiritual:0")} | World size: \${lst('wlds',"2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9")} | \${btn('start',"wsize[0]=1*elm('wlds').value;wtype[0]=1*elm('wld').value;next()")}`; break;
+        n=`World type: \${lst('wld',"Natural:natural,Spiritual:spiritual")} | World size: \${lst('wlds',"2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9")} | \${btn('start',"wsize[0]=1*elm('wlds').value;wtype[0]=elm('wld').value;w='world/'+wtype[0]+'/';next()")}`; break;
     case 6://start
         tmpn=7
         t=`You can now enter the world.`
-        n=`\${btn('enter',"tmpn=0;wname=window['namegen'+namegennum]();next('world/0/forest')")}`; break;
+        n=`\${btn('enter',"tmpn=0;wname=window['namegen'+namegennum]();genchunks();next(w+'terrain/'+chunk[loc()].arr(0))")}`;break;
     }; if(tmpn>1){n+=`<br><br>\${btn('back',"tmpn-=2;next()")}`}
     end()
 })()

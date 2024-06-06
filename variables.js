@@ -1,12 +1,12 @@
-//restricted characters for variables [¦,§,°] (used for save data)
-//using strings as arrays split character[!,~,.] (mostly depends on the variable)
+//restricted characters in save variables [¦,§,°] (used for save data)
+//using strings as arrays split characters [!,~,.] (mostly depends on the variable,! is most common)
 //script variables
 version='0 (DEV)'
 t=''//str js convert to html game text (save/load)
 n=''//str js convert to html game navigation (save/load)
 m=0//str keeps track of what menu is open
 x='none'//used to simplify script | 'none' is used instead of other empty values because of saving and loading problems
-w=''//str possible use for world type in file path
+w=''//str for world type in file path
 _=''//str the path of the last scene used
 stringv=['tmp','tmp2','ally']//variables to initialize and save as strings
 numv=['tmpn','namegennum','fsize','cworldid']//variables to initialize and save as numbers
@@ -15,15 +15,14 @@ tech=[x,x,x]//used in testing character tab (may be used elsewhere or removed la
 stat=[1,0]//int [0money, 1speed]
 aff=[x]//str affinity name
 afft=[0]//int affinity type (0=Black, 1=White) (2=Red, 3=Green, 4=Blue)
-afflvl=[]
-affxp=[]
+afflvl=[0]
+affxp=[0]
 atk=[0,0,0]//attack[0physical, 1energy, 2spirit]
-lvl=[0,0,0]//level[0physical,1energy, 2spirit] attack and defense are modified by level
 def=[0,0,0]//defense[0physical, 1energy, 2spirit]
 sen=[0,0,0]//senses[0physical, 1energy, 2spirit]
-hp=[1,1,0,0]//current,max,modifier,regen
-ep=[1,1,0,0]
-sp=[1,1,0,0]
+hp=[1,1,1,0]//current,max,modifier,regen
+ep=[1,1,1,0]
+sp=[1,1,1,0]
 //arrays items
 itm=['Name']//str item name
 itma=[0]//int item amount
@@ -53,12 +52,14 @@ pxp=[0]//int experience to level
 //arrays worlds
 wid=[0]//int the unique world number
 wname=[x]//str world name
-wtype=[0]//int world atype Natural:0,Spiritual:1
+wtype=[x]//str world type (natural,spiritual)
 wsize=[0]//int world chunk amount square ex: 3 for 3*3
-wchunk=[x]//coordinated/chunk data [chunk~chunk]
+wchunk=[x]//str combined chunks [chunk~chunk]
+wchunkd=[x]//str combined chunk data [chunk~chunk]
 wppl=[x]//for saving and loading the people of each world
-//loaded world data
-chunk=[x]//str chunk data [major!minor!terrain!!datamajor!!dataminor]
+//loaded current world data
+chunk=[x]//chunk location data [terrain!major!minor]
+chunkd=[x]//chunk data [data!!data major!!data minor]
 //arrays general
 imgv=[x]//the images used in the character frame
 pos=[0,0,0,0]//X,Y (Inside the current chunk) X,Y (The current chunk)
@@ -80,9 +81,12 @@ nvow1=['a','an','ang','ao','e','en','eng','ei','i','in','o','ong','u','uo','ua']
 cfimg=["bgimg","tail","eff1","body","eff2","eyes","hair","back","bottom","top","hair2"]//the image layers to load in the character frame
 ptrait=['character(0Bad,1Neutral,2Good)','luck(0Bad,1Poor,2Normal,3Good,#Extreme)','charm(0Bad,1Low,2Normal,3Good,4High)','personality(0)','fame(0Unknown,1Low,2Medium,3High,4Exreme)','knowledge(0Stupid,1Poor,2Normal,3Good,Very Good)']
 races={'1':'Demon','2':'Elf','3':'Human','4':'Abyss','5':'Spirit','10':'Demon','20':'Elf','30':'Human','40':'Abyss','50':'Spirit','11':'Succubus','21':'Fox','31':'Cleric','41':'Curse','51':'Ghost','12':'Zombie','22':'Dog','32':'Alchemist','42':'Mimic','52':'God','13':'Vampire','23':'Cat','33':'Cultivator','43':'Slime','53':'Elemental'}
-matform=[x,'Ingot','Bottle','Crystal','Bag','Chunk','Ball','Stack']
+matform=[x,'Ingot','Bottle','Crystal','Bag','Chunk','Ball','Stack']//the type of container for a material
 afftype=['Black','White','Red','Green','Blue']
-matcraft=['Cooking','Smithing','Formation']
+matcraft=['Cooking','Smithing','Formation']//crafting uses for materials
+terrains=['desert','forest','jungle','mountain','sea','snow','swamp']
+majorfeatures=['city','empty','fort','mine','sect','village']
+minorfeatures=['ancient','cave','den','empty','hideout','labyrinth','lake','portal','shelter','shrine']
 //script category arrays
 world=['wid','wname','wtype','wsize','wchunk','wppl']
 item=['itm','itma','itmt','itmr','itmd']
