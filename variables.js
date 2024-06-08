@@ -11,10 +11,12 @@ _=''//str the path of the last scene used
 stringv=['tmp','tmp2','ally']//variables to initialize and save as strings
 numv=['tmpn','namegennum','fsize','cworldid']//variables to initialize and save as numbers
 //arrays player
-tech=[x,x,x]//used in testing character tab (may be used elsewhere or removed later)
-stat=[1,0]//int [0money, 1speed]
-aff=[x]//str affinity name
-afft=[0]//int affinity type (0=Black, 1=White) (2=Red, 3=Green, 4=Blue)
+tech=[0,0,0,0]//int index of the associated affinity [weapon, body, energy, mental, etc (effects)]
+stat=[0]//int [0=money]
+aff=['Hands']//str affinity name (basically a skill name)
+affc=[0]//int affinity color (0=Black, 1=White) (2=Red, 3=Green, 4=Blue)
+afft=[2]//int affinity type (0=none,1=skill,2=weapon,3=physical,4=energy,5=mental,6=effect)
+affr=[8]//int affinity rarity (similar to item rarity, 9 is special and means no xp growth) (Acts as a multiplier for certain effects)
 afflvl=[0]
 affxp=[0]
 atk=[0,0,0]//attack[0physical, 1energy, 2spirit]
@@ -24,7 +26,7 @@ hp=[1,1,1,0]//current,max,modifier,regen
 ep=[1,1,1,0]
 sp=[1,1,1,0]
 //arrays items
-itm=['Name']//str item name
+itm=[x]//str item name
 itma=[0]//int item amount
 itmt=[3]//int item type
 itmr=[8]//int rarity (0=rare upto 8=notrare or 9=black)
@@ -41,7 +43,7 @@ matr=[8]//int rarity (0=rare upto 8=notrare or 9=black)
 pid=[0]//int
 psn=[x]//str name
 psna=[x]//str [organization name!organization level!specialty!specialty level]
-psnl=[x]//str location ex:'E0'
+psnl=[x]//str location ex:'00' xy
 ptrt=['000000']//str ['character,luck,charm,personality,fame,knowledge'](ptrait) characters representing different trait values
 peqp=[x]//str ['weapon!weapon value!clothes!clothing value']
 race=['00']//str race+variant
@@ -80,9 +82,10 @@ ncon3=['el','la','v','an','or','ar','ri','ice','is','er','st','al','ea','b','no'
 nvow1=['a','an','ang','ao','e','en','eng','ei','i','in','o','ong','u','uo','ua']
 cfimg=["bgimg","tail","eff1","body","eff2","eyes","hair","back","bottom","top","hair2"]//the image layers to load in the character frame
 ptrait=['character(0Bad,1Neutral,2Good)','luck(0Bad,1Poor,2Normal,3Good,#Extreme)','charm(0Bad,1Low,2Normal,3Good,4High)','personality(0)','fame(0Unknown,1Low,2Medium,3High,4Exreme)','knowledge(0Stupid,1Poor,2Normal,3Good,Very Good)']
-races={'1':'Demon','2':'Elf','3':'Human','4':'Abyss','5':'Spirit','10':'Demon','20':'Elf','30':'Human','40':'Abyss','50':'Spirit','11':'Succubus','21':'Fox','31':'Cleric','41':'Curse','51':'Ghost','12':'Zombie','22':'Dog','32':'Alchemist','42':'Mimic','52':'God','13':'Vampire','23':'Cat','33':'Cultivator','43':'Slime','53':'Elemental'}
+races={'1':'Demon','2':'Furry','3':'Human','4':'Abyss','5':'Spirit','10':'Demon','20':'Furry','30':'Human','40':'Abyss','50':'Spirit','11':'Succubus','21':'Fox','31':'Cleric','41':'Curse','51':'Ghost','12':'Zombie','22':'Dog','32':'Alchemist','42':'Mimic','52':'God','13':'Vampire','23':'Cat','33':'Cultivator','43':'Slime','53':'Elemental'}
 matform=[x,'Ingot','Bottle','Crystal','Bag','Chunk','Ball','Stack']//the type of container for a material
-afftype=['Black','White','Red','Green','Blue']
+affcolor=['Black','White','Red','Green','Blue']
+afftype=['none','skill','weapon','physical','energy','mental','effect']
 matcraft=['Cooking','Smithing','Formation']//crafting uses for materials
 terrains=['desert','forest','jungle','mountain','sea','snow','swamp']
 majorfeatures=['city','empty','fort','mine','sect','village']
@@ -93,5 +96,6 @@ item=['itm','itma','itmt','itmr','itmd']
 itype=['Equipment','Charm','Consumable','Item','Consumable']//equip:(slots type)XstatXnumXetc,charm:truthyXeval,consumable:statXnumXetc,item:nothing,consumable:eval,material:amountXtypeX(affinityXlevel)
 slots=['weapon','top','bottom']
 slotc=['top','bottom']
+affinity=['aff','affc','afft','affr','afflvl','affxp']
 person=['pid','psn','ptrt','race','pfav','lvl','age','pxp']
 material=['mat','mata','matt','matf','matc','matr']
