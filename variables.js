@@ -13,7 +13,7 @@ numv=['tmpn','namegennum','fsize','cworldid']//variables to initialize and save 
 //arrays player
 tech=[0,0,0,0]//int index of the associated affinity [weapon, body, energy, mental, etc (effects)]
 stat=[0]//int [0=money]
-aff=['Hands']//str affinity name (basically a skill name) hands is no weapon
+aff=['Hands']//str affinity name (basically a skill name)
 affc=[0]//int affinity color (0=Black, 1=White) (2=Red, 3=Green, 4=Blue)
 afft=[2]//int affinity type (0=none,1=skill,2=weapon,3=physical,4=energy,5=mental,6=effect)
 affr=[8]//int affinity rarity (similar to item rarity, 9 is special and means no xp growth) (Acts as a multiplier for certain effects)
