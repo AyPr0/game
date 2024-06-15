@@ -15,7 +15,7 @@ tech=[0,0,0,0]//int index of the associated affinity [weapon, body, energy, ment
 stat=[0]//int [0=money]
 aff=['Hands']//str affinity name (basically a skill name)
 affc=[0]//int affinity color (0=Black, 1=White) (2=Red, 3=Green, 4=Blue)
-afft=[2]//int affinity type (0=none,1=skill,2=weapon,3=physical,4=energy,5=mental,6=effect)
+afft=[2]//int affinity type (0=none,1=skill,2=weapon,3=physical,4=energy,5=mental,6=effect,7=faith)
 affr=[8]//int affinity rarity (similar to item rarity, 9 is special and means no xp growth) (Acts as a multiplier for certain effects)
 afflvl=[0]
 affxp=[0]
@@ -64,7 +64,7 @@ chunk=[x]//chunk location data [terrain!major!minor]
 chunkd=[x]//chunk data [data!!data major!!data minor]
 //arrays general
 imgv=[x]//the images used in the character frame
-pos=[0,0,0,0]//X,Y (Inside the current chunk) X,Y (The current chunk)
+pos=[0,0,0,0]//X,Y,direction(1=N,2=S),direction(1=E,2=W)
 tmppsn=[x]//str ['name!age!ptrt']
 time=[0,0,0,0,0]//int m/h/D/M/Y
 //script arrays/objects
@@ -85,11 +85,12 @@ ptrait=['character(0Bad,1Neutral,2Good)','luck(0Bad,1Poor,2Normal,3Good,#Extreme
 races={'1':'Demon','2':'Furry','3':'Human','4':'Abyss','5':'Spirit','10':'Demon','20':'Furry','30':'Human','40':'Abyss','50':'Spirit','11':'Succubus','21':'Fox','31':'Cleric','41':'Curse','51':'Ghost','12':'Zombie','22':'Dog','32':'Alchemist','42':'Mimic','52':'God','13':'Vampire','23':'Cat','33':'Cultivator','43':'Slime','53':'Elemental'}
 matform=[x,'Ingot','Bottle','Crystal','Bag','Chunk','Ball','Stack']//the type of container for a material
 affcolor=['Black','White','Red','Green','Blue']
-afftype=['none','skill','weapon','physical','energy','mental','effect']
+afftype=['none','skill','weapon','physical','energy','mental','effect','faith']
 matcraft=['Cooking','Smithing','Formation']//crafting uses for materials
 terrains=['desert','forest','jungle','mountain','sea','snow','swamp']
 majorfeatures=['city','empty','fort','mine','sect','village']
 minorfeatures=['ancient','cave','den','empty','hideout','labyrinth','lake','portal','shelter','shrine']
+direction=[['None','East','West'],['North','Northeast','Northwest'],['South','Southeast','Southwest']]
 //script category arrays
 world=['wid','wname','wtype','wsize','wchunk','wppl']
 item=['itm','itma','itmt','itmr','itmd']
