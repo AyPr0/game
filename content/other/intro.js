@@ -14,7 +14,6 @@
         tmpn=3;race[0]='10'
         t=`What are you?`
         n=`Race: \${lst('bod',"Demon:1,Furry:2,Human:3,Abyss:4,Spirit:5","race[0]=race[0].cut(0,1,elm('bod').value)")} | \${btn('mystery',"race[0]=race[0].cut(0,1,${rng(4,1)});next()")} | \${btn('next',"next()")}`; break;
-
     case 3://race variant
         tmpn=4
         let $2='';switch(1*race[0][0]){case 1:{$2='Demon:0,Succubus:1,Zombie:2,Vampire:3'}break;case 2:{$2='Furry:0,Fox:1,Dog:2,Cat:3'}break;case 3:{$2='Human:0,Cleric:1,Alchemist:2,Cultivator:3'}break;case 4:{$2='Abyss:0,Curse:1,Mimic:2,Slime:3'}break;case 5:{$2='Spirit:0,Ghost:1,God:2,Elemental:3'}}
