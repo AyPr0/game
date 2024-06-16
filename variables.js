@@ -64,7 +64,7 @@ chunk=['forest!city!cave']//chunk location data [terrain!major!minor]
 chunkd=['!!!!']//chunk data [data!!data major!!data minor]
 //arrays general
 imgv=[x]//the images used in the character frame
-pos=[0,0,0,0]//X,Y,direction(1=N,-1=S),direction(1=E,-1=W)
+pos=[0,0,0]//X,Y,Direction(0=N,7=NW)
 tmppsn=[x]//str ['name!age!ptrt']
 time=[0,0,0,0,0]//int m/h/D/M/Y
 //script arrays/objects
@@ -90,7 +90,8 @@ matcraft=['Cooking','Smithing','Formation']//crafting uses for materials
 terrains=['desert','forest','jungle','mountain','sea','snow','swamp']
 majorfeatures=['city','empty','fort','mine','sect','village']
 minorfeatures=['ancient','cave','den','empty','hideout','labyrinth','lake','portal','shelter','shrine']
-direction=[['Southwest','South','Southeast'],['West','None','East'],['Northwest','North','Northeast']]
+direction=['North','Northeast','East','Southeast','South','Southwest','West','Northwest']
+rdirection=[1,1,0,-1,-1,-1,0,1,0,1,1,1,0,-1,-1,-1]
 //script category arrays
 world=['wid','wname','wtype','wsize','wchunk','wppl']
 item=['itm','itma','itmt','itmr','itmd']
