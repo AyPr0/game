@@ -6,7 +6,7 @@ t=''//str js convert to html game text (save/load)
 n=''//str js convert to html game navigation (save/load)
 m=0//str keeps track of what menu is open
 x='none'//used to simplify script | 'none' is used instead of other empty values because of saving and loading problems
-w=''//str for world type in file path
+w='world/natural/'//str for world type in file path
 _=''//str the path of the last scene used
 stringv=['tmp','tmp2','ally']//variables to initialize and save as strings
 numv=['tmpn','namegennum','fsize','cworldid']//variables to initialize and save as numbers
@@ -55,16 +55,16 @@ pxp=[0]//int experience to level
 wid=[0]//int the unique world number
 wname=[x]//str world name
 wtype=[x]//str world type (natural,spiritual)
-wsize=[0]//int world chunk amount square ex: 3 for 3*3
+wsize=[1]//int world chunk amount square ex: 3 for 3*3
 wchunk=[x]//str combined chunks [chunk~chunk]
 wchunkd=[x]//str combined chunk data [chunk~chunk]
 wppl=[x]//for saving and loading the people of each world
 //loaded current world data
-chunk=[x]//chunk location data [terrain!major!minor]
-chunkd=[x]//chunk data [data!!data major!!data minor]
+chunk=['forest!city!cave']//chunk location data [terrain!major!minor]
+chunkd=['!!!!']//chunk data [data!!data major!!data minor]
 //arrays general
 imgv=[x]//the images used in the character frame
-pos=[0,0,0,0]//X,Y,direction(1=N,2=S),direction(1=E,2=W)
+pos=[0,0,0,0]//X,Y,direction(1=N,-1=S),direction(1=E,-1=W)
 tmppsn=[x]//str ['name!age!ptrt']
 time=[0,0,0,0,0]//int m/h/D/M/Y
 //script arrays/objects
@@ -90,7 +90,7 @@ matcraft=['Cooking','Smithing','Formation']//crafting uses for materials
 terrains=['desert','forest','jungle','mountain','sea','snow','swamp']
 majorfeatures=['city','empty','fort','mine','sect','village']
 minorfeatures=['ancient','cave','den','empty','hideout','labyrinth','lake','portal','shelter','shrine']
-direction=[['None','East','West'],['North','Northeast','Northwest'],['South','Southeast','Southwest']]
+direction=[['Southwest','South','Southeast'],['West','None','East'],['Northwest','North','Northeast']]
 //script category arrays
 world=['wid','wname','wtype','wsize','wchunk','wppl']
 item=['itm','itma','itmt','itmr','itmd']
