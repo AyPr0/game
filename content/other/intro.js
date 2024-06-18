@@ -15,7 +15,7 @@
     case 2://race
         tmpn=3;race[0]='00'
         t=`What are you?<br><br>Demons and humans are enemies. Abyss and Spirits are enemies.`
-        n=`Race: \${lst('bod',"Demon:0,Human:1,Abyss:2,Spirit:3","race[0]=race[0].cut(0,1,elm('bod').value)")} | \${btn('mystery',"race[0]=race[0].cut(0,1,${rng(4,1)});next()")} | \${btn('next',"next()")}`; break;
+        n=`Race: \${lst('bod',"Demon:0,Human:1,Abyss:2,Spirit:3","race[0]=race[0].cut(0,1,elm('bod').value)")} | \${btn('mystery',"race[0]=race[0].cut(0,1,${rng(3)});next()")} | \${btn('next',"next()")}`; break;
     case 3://race variant
         tmpn=4
         hp[1]=5;ep[1]=5;sp[1]=5;sbu()
@@ -25,13 +25,12 @@
     case 4://world settings
         tmpn=5
         let $3=racevm[race[0][0]][race[0][1]];hp[1]*=$3.arr(0);ep[1]*=$3.arr(1);sp[1]*=$3.arr(2);heal();sbu()
-        t=`Choose the starting world type and size. It is suggested to start in your race's associated world.<br><br>World size is exponential (minimum 4 is recommended).`
-        t+=`<br><br>Natural (Demon,Beast,Human) | Spiritual (Abyss,Spirit)<br><br>\${col('#B44','Currently, only the Natural world type is available')}.`
-        n=`World type: \${lst('wld',"Natural:natural,Spiritual:spiritual")} | World size: \${lst('wlds',"2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9")} | \${btn('start',"wsize[0]=1*elm('wlds').value;wtype[0]=elm('wld').value;w='world/'+wtype[0]+'/';next()")}`; break;
+        t=`Choose the starting world size.<br><br>World size is exponential (minimum 4 is recommended).`
+        n=`World size: \${lst('wlds',"2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9")} | \${btn('start',"wsize[0]=1*elm('wlds').value;next()")}`; break;
     case 5://start
         tmpn=7
         t=`You can now enter the world.`
-        n=`\${btn('enter',"tmpn=50;tmp2='in';wname=window['namegen'+namegennum]();genchunks();saving='T';next(w+'terrain/'+chunk[loc()].arr(0))")}`;break;
+        n=`\${btn('enter',"tmpn=50;tmp2='in';wname[0]=window['namegen'+namegennum]();genchunks();saving='T';next(w+'terrain/'+chunk[loc()].arr(0))")}`;break;
     }; if(tmpn>1){n+=`<br><br>\${btn('back',"tmpn-=2;next()")}`}
     end()
 })()

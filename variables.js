@@ -51,7 +51,6 @@ pxp=[0]//int experience to level
 //arrays worlds
 wid=[0]//int the unique world number
 wname=[x]//str world name
-wtype=[x]//str world type (natural,spiritual)
 wsize=[1]//int world chunk amount square ex: 3 for 3*3
 wchunk=[x]//str combined chunks [chunk~chunk]
 wchunkd=[x]//str combined chunk data [chunk~chunk]
@@ -67,10 +66,10 @@ time=[0,0,0,0,0]//int m/h/D/M/Y
 //script arrays/objects
 ids=[0,0]//int the highest number id used (pid/wid)
 saves=[0,0,0,0,0,0,0]//used to track saves
-ss=[x,x,'T','F','world/natural/',x]//default values for stringv varibles
+ss=[x,x,'T','F','world/',x]//default values for stringv varibles
 sn=[0,1,16,0]//default values for numv variables
 arrn=['tech','stat','affc','afft','affr','afflvl','affxp','atk','def','sen','hp','ep','sp','itma','itmt','itmr','mata','matt','matf','matc','matr','pid','pfav','lvl','age','pxp','wid','wsize','pos','time','ids','sn']//number array names (save/load)
-arrs=['aff','itm','itmd','eqp','mat','psn','psna','psnl','ptrt','peqp','race','wname','wtype','wchunk','wchunkd','wppl','chunk','chunkd','imgv','tmppsn','ss']//string array names (save/load)
+arrs=['aff','itm','itmd','eqp','mat','psn','psna','psnl','ptrt','peqp','race','wname','wchunk','wchunkd','wppl','chunk','chunkd','imgv','tmppsn','ss']//string array names (save/load)
 sv=[[],[],[],[],'','']// used in save/load functions
 cc=['#B44','#B4B','#B80','#BB4','#4B4','#44B','#4BB','#BBB','#888','#000']//color codes for stat number, etc
 ncon1=['b','ch','d','f','g','h','j','k','l','m','n','p','q','qu','r','s','sh','t','v','w','x','y','z']
@@ -86,13 +85,13 @@ matform=[x,'Ingot','Bottle','Crystal','Bag','Chunk','Ball','Stack']//the type of
 affcolor=['Black','White','Red','Green','Blue']
 afftype=['none','skill','weapon','physical','energy','spiritual','faith','effect']
 matcraft=['Cooking','Smithing','Formation']//crafting uses for materials
-terrains=['desert','forest','jungle','mountains','sea','snow','swamp']
+terrains=['desert','forest','jungle','mountains','plains','sea','snow','swamp']
 majorfeatures=['city','fort','mine','sect','village']
 minorfeatures=['ancient','cave','cemetery','den','empty','hideout','labyrinth','lake','portal','shelter','shrine']
 direction=['North','Northeast','East','Southeast','South','Southwest','West','Northwest']
 rdirection=[1,1,0,-1,-1,-1,0,1,0,1,1,1,0,-1,-1,-1]
 //script category arrays
-world=['wid','wname','wtype','wsize','wchunk','wppl']
+world=['wid','wname','wsize','wchunk','wppl']
 item=['itm','itma','itmt','itmr','itmd']
 itype=['Equipment','Charm','Consumable','Item','Consumable']//equip:(slots type)XstatXnumXetc,charm:truthyXeval,consumable:statXnumXetc,item:nothing,consumable:eval,material:amountXtypeX(affinityXlevel)
 slots=['weapon','top','bottom']
