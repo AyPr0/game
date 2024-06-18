@@ -12,7 +12,7 @@
             n=`\${btn('back',"tmp=x;next()")}`;break;
         case 'inn':
             t=`You are at an inn.`
-            n=`\${btn('rest',"tmp='rest';heal();sbu();next()")} | \${btn('back',"tmp=x;next()")}`;break;
+            n=`\${btn('rest',"tmp='inn!0!world/major/city!inn';next('other/rest')")} | \${btn('back',"tmp2=x;tmp=x;next()")}`;break;
     }
     end()
 })()

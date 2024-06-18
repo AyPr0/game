@@ -6,8 +6,8 @@
     case x:// standing
         t=`You are in the mountains. `
         if(tmpn>60){t+=`There is a ${$1[0]} ahead. A ${$1[1]} is long behind you.`}else if(tmpn<40){t+=`There is a ${$1[0]} far in the distance. A ${$1[1]} is behind you.`}else{t+=`There is a ${$1[0]} in the distance. A ${$1[1]} is far behind you.`}
-        n=`\${btn('walk',"tmp='walk';next()")} | \${btn('turn around',"tmpn=100-tmpn;tmp2='${$1[2]}';pos[2]=(pos[2]+4)%8;next()")}<br><br>`
-        n+=`\${btn('explore',"tmp='explore';t='You explore the mountains and';next()")}`;break;
+        n=`\${btn('walk',"ptime([0,1]);tmp='walk';next()")} | \${btn('turn around',"tmpn=100-tmpn;tmp2='${$1[2]}';pos[2]=(pos[2]+4)%8;next()")}<br><br>`
+        n+=`\${btn('explore',"ptime([20]);tmp='explore';t='You explore the mountains and';next()")}`;break;
     case 'walk':// travelling
         tmpn+=10
         if(tmpn>99){
@@ -20,14 +20,14 @@
             if(rng(9)==0){$3="explore';tmpn+=10;t='As you are walking,'"}else{$3="walk'"}
             t=`You are walking in the mountains. `
             if(tmpn>60){t+=`There is a ${$1[0]} ahead. The ${$1[1]} is long behind you.`}else if(tmpn<40){t+=`There is a ${$1[0]} far in the distance. The ${$1[1]} is behind you.`}else{t+=`There is a ${$1[0]} in the distance. The ${$1[1]} is far behind you.`}
-            n=`\${btn('keep walking',"tmp='${$3};next()")} | \${btn('turn around',"tmpn=100-tmpn;tmp2='${$1[2]}';pos[2]=(pos[2]+4)%8;tmp=x;next()")}<br><br>`
-            n+=`\${btn('explore',"tmp='explore';t='You explore the mountains and';next()")}`};break;
+            n=`\${btn('keep walking',"ptime([0,1]);tmp='${$3};next()")} | \${btn('turn around',"tmpn=100-tmpn;tmp2='${$1[2]}';pos[2]=(pos[2]+4)%8;tmp=x;next()")}<br><br>`
+            n+=`\${btn('explore',"ptime([20]);tmp='explore';t='You explore the mountains and';next()")}`};break;
     case 'explore':// exploring the area
         switch(rng(2)){
             case 0:t+=` nothing happens.`;break;
             case 1:t+=` find some some rocks.`;break;
-            case 2:t+=` a snake bites you.`;break;}
-        n=`${btn("next","tmp=x;next()")}`;break;
+            case 2:hp[0]-=2;sbu(['hp']);t+=` a snake bites you.`;break;}
+            if(hp[0]<1){t+=` You lose consciousness.`;n=`${btn("next","tmp='faint!2!world/terrain/mountains!none';next('other/rest')")}`}else{n=`${btn("next","tmp=x;next()")}`};break;
     }
     end()
 })()

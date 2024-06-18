@@ -35,7 +35,7 @@ function namegen2(){let $1=rng(3,1);let $2=rng(3,1);let $3=ncon2.length;let $4='
 function namegen3(){let $1=rng(4,2);let $2=rng(4,2);let $3=ncon3.length;let $4='';let $5='';while($1>0){$4+=ncon3[rng($3-1)];$1-=1};while($2>0){$5+=ncon3[rng($3-1)];$2-=1};$4=$4[0].toUpperCase()+$4.slice(1);$5=$5[0].toUpperCase()+$5.slice(1);return($4+' '+$5)}
 function menu($a) {let $1=['character','items','savemenu','settings','cheats'];if($a==m){elm('infodis').style.display=x;m=0}else{next("menu/"+$1[$a-1],0);elm('infodis').style.display="block";m=$a}}
 function sbu($a=['hp','ep','sp']) {if(Array.isArray($a)){$a.forEach(sbu)}else{let $1=[window[$a][0],window[$a][1]];let $2=elm($a+"bar");if($1[0]>$1[1]){window[$a][0]=$1[1];$1=100}else{$1=perc($1[0],$1[1])};if($1<0){window[$a][0]=0;$1=0};$2.style.width=$1+"%";$1=Math.floor($1/20);$2.style.background=cc[$1];fun($a+"text",col(cc[$1],window[$a][0])+" ("+window[$a][1]+")")}}
-function end($a=2) {elm("script"+$a).remove();if($a==1||$a==3){sbu()};if($a==2||$a==3){fun('txt',t);fun('nav',n)}}
+function end($a=2) {elm("script"+$a).remove();if($a==2){fun('txt',t);fun('nav',n)}}
 function elm($a){return(document.getElementById($a))}
 //save/load functions
 function varld() {sv=sv.split('¦');sv[0]=sv[0].split('§');arrn.forEach(($a,$b)=>{window[arrn[$b]]=sv[0][$b].split('°').map(Number)});sv[1]=sv[1].split('§');arrs.forEach(($a,$b)=>{window[arrs[$b]]=sv[1][$b].split('°')});t=sv[2];n=sv[3];reset()}
