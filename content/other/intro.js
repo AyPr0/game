@@ -1,33 +1,37 @@
 (function () {
     switch(tmpn){
     case 0://intro
+        saving="T"
         tmpn=1;
         t=`Welcome to \${col('red','UNNAMED GAME')+' '+col('lightyellow','The general gameplay is still being developed.')} The game uses inspirations from many fantasy settings; some words may not match your preconception.<br><br>Navigate the game using the button (colored text) below.`
-        n=`\${btn('next',"next()")}`
+        n=`\${btn('next',"next()")} (The next part is character creation; saving and loading will be disabled.)`
         if(localStorage.UGS==undefined){localStorage['UGS']=saves.join()} break;
     case 1://player name
+        saving="F"
         tmpn=2;
         t=`Name yourself. You can randomize it with a generator. NPC names will use the selected generator.`
         n=`Name generator: \${lst('ngen','1:1,2:2,3:3',"namegennum=elm('ngen').value")} | \${btn('randomize',"psn[0]=window['namegen'+namegennum]();elm('itext').value=psn[0]")} <textarea id="itext" style="resize:none" cols=31 rows=1 maxlength=31 placeholder="31 character limit."></textarea>`
         n+=` \${btn('mystery',"psn[0]=window['namegen'+namegennum]();next()")}<br><br>\${btn('next',"if(elm('itext').value!=''){next()}")}`; break;
     case 2://race
-        tmpn=3;race[0]='10'
-        t=`What are you?`
-        n=`Race: \${lst('bod',"Demon:1,Furry:2,Human:3,Abyss:4,Spirit:5","race[0]=race[0].cut(0,1,elm('bod').value)")} | \${btn('mystery',"race[0]=race[0].cut(0,1,${rng(4,1)});next()")} | \${btn('next',"next()")}`; break;
+        tmpn=3;race[0]='00'
+        t=`What are you?<br><br>Demons and humans are enemies. Abyss and Spirits are enemies.`
+        n=`Race: \${lst('bod',"Demon:0,Human:1,Abyss:2,Spirit:3","race[0]=race[0].cut(0,1,elm('bod').value)")} | \${btn('mystery',"race[0]=race[0].cut(0,1,${rng(4,1)});next()")} | \${btn('next',"next()")}`; break;
     case 3://race variant
         tmpn=4
-        let $2='';switch(1*race[0][0]){case 1:{$2='Demon:0,Succubus:1,Zombie:2,Vampire:3'}break;case 2:{$2='Furry:0,Fox:1,Dog:2,Cat:3'}break;case 3:{$2='Human:0,Cleric:1,Alchemist:2,Cultivator:3'}break;case 4:{$2='Abyss:0,Curse:1,Mimic:2,Slime:3'}break;case 5:{$2='Spirit:0,Ghost:1,God:2,Elemental:3'}}
-        t=`Choose your race variant.`;
+        hp[1]=5;ep[1]=5;sp[1]=5;sbu()
+        let $2='';switch(1*race[0][0]){case 0:{$2='none:0,Succubus:1,Zombie:2,Vampire:3'}break;case 1:{$2='none:0,Fox:1,Dog:2,Cat:3'}break;case 2:{$2='none:0,Curse:1,Mimic:2,Slime:3'}break;case 3:{$2='none:0,Ghost:1,God:2,Elemental:3'}}
+        t=`Choose your variant.<br><br>The race and variant will affect your base stats.`;
         n=`Variant: \${lst('a1',"${$2}","race[0]=race[0].cut(1,1,elm('a1').value)")}<br><br>\${btn('mystery',"race[0]=race[0].cut(1,1,${rng(3)});next()")} | \${btn('next',"next()")}`; break;
     case 4://world settings
         tmpn=5
+        let $3=racevm[race[0][0]][race[0][1]];hp[1]*=$3.arr(0);ep[1]*=$3.arr(1);sp[1]*=$3.arr(2);heal();sbu()
         t=`Choose the starting world type and size. It is suggested to start in your race's associated world.<br><br>World size is exponential (minimum 4 is recommended).`
         t+=`<br><br>Natural (Demon,Beast,Human) | Spiritual (Abyss,Spirit)<br><br>\${col('#B44','Currently, only the Natural world type is available')}.`
         n=`World type: \${lst('wld',"Natural:natural,Spiritual:spiritual")} | World size: \${lst('wlds',"2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9")} | \${btn('start',"wsize[0]=1*elm('wlds').value;wtype[0]=elm('wld').value;w='world/'+wtype[0]+'/';next()")}`; break;
     case 5://start
         tmpn=7
         t=`You can now enter the world.`
-        n=`\${btn('enter',"tmpn=90;tmp2='in';wname=window['namegen'+namegennum]();genchunks();next(w+'terrain/'+chunk[loc()].arr(0))")}`;break;
+        n=`\${btn('enter',"tmpn=50;tmp2='in';wname=window['namegen'+namegennum]();genchunks();saving='T';next(w+'terrain/'+chunk[loc()].arr(0))")}`;break;
     }; if(tmpn>1){n+=`<br><br>\${btn('back',"tmpn-=2;next()")}`}
     end()
 })()

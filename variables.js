@@ -5,13 +5,11 @@ version='0 (DEV)'
 t=''//str js convert to html game text (save/load)
 n=''//str js convert to html game navigation (save/load)
 m=0//str keeps track of what menu is open
-x='none'//used to simplify script | 'none' is used instead of other empty values because of saving and loading problems
-w='world/natural/'//str for world type in file path
-_=''//str the path of the last scene used
-stringv=['tmp','tmp2','ally']//variables to initialize and save as strings
-numv=['tmpn','namegennum','fsize','cworldid']//variables to initialize and save as numbers
+x='none'//used to simplify script | 'none' is used instead of empty strings in variables/arrays because of saving and loading problems
+strv=['tmp','tmp2','saving','combat','w','_']//variables to initialize and save as strings (tmp/tmp2 are variables used by scenes, saving is for disabling the save menu, w is for world type in file path _ is the path of the last scene used)
+numv=['tmpn','namegennum','fsize','cworldid']//variables to initialize and save as numbers (tmpn is used by scenes namegennum is the selected name generator, fsize is font size, cworldid is the index of the current world)
 //arrays player
-tech=[0,0,0,0]//int index of the associated affinity [weapon, body, energy, mental, etc (effects)]
+tech=[0,-1,-1,-1,-1,-1]//int index of the associated affinity [weapon, body, energy, spiritual, faith, effect]
 stat=[0]//int [0=money]
 aff=['Hands']//str affinity name (basically a skill name)
 affc=[0]//int affinity color (0=Black, 1=White) (2=Red, 3=Green, 4=Blue)
@@ -19,12 +17,11 @@ afft=[2]//int affinity type (0=none,1=skill,2=weapon,3=physical,4=energy,5=menta
 affr=[8]//int affinity rarity (similar to item rarity, 9 is special and means no xp growth) (Acts as a multiplier for certain effects)
 afflvl=[0]
 affxp=[0]
-atk=[0,0,0]//attack[0physical, 1energy, 2spirit]
-def=[0,0,0]//defense[0physical, 1energy, 2spirit]
-sen=[0,0,0]//senses[0physical, 1energy, 2spirit]
-hp=[1,1,1,0]//current,max,modifier,regen
-ep=[1,1,1,0]
-sp=[1,1,1,0]
+atk=[1,0,0]//attack[hp,ep,sp]
+def=[0,0,0]//defense[hp,ep,sp]
+hp=[5,5,0,0]//current,max,regen,level(level may be used for growth)
+ep=[5,5,0,0]
+sp=[5,5,0,0]
 //arrays items
 itm=[x]//str item name
 itma=[0]//int item amount
@@ -70,10 +67,10 @@ time=[0,0,0,0,0]//int m/h/D/M/Y
 //script arrays/objects
 ids=[0,0]//int the highest number id used (pid/wid)
 saves=[0,0,0,0,0,0,0]//used to track saves
-ss=[x,x,x]//default values for stringv varibles
+ss=[x,x,'T','F','world/natural/',x]//default values for stringv varibles
 sn=[0,1,16,0]//default values for numv variables
-arrn=['wid','pid','sn','pfav','itma','itmt','itmr','time','trtl','lvl','pxp','age','stat','hp','ep','sp']//number array names (save/load)
-arrs=['ss','tech','newpsn','psn','race','psnp','ptrt','peqp','slot','eqp','itmd','itm','imgv']//string array names (save/load)
+arrn=['tech','stat','affc','afft','affr','afflvl','affxp','atk','def','sen','hp','ep','sp','itma','itmt','itmr','mata','matt','matf','matc','matr','pid','pfav','lvl','age','pxp','wid','wsize','pos','time','ids','sn']//number array names (save/load)
+arrs=['aff','itm','itmd','eqp','mat','psn','psna','psnl','ptrt','peqp','race','wname','wtype','wchunk','wchunkd','wppl','chunk','chunkd','imgv','tmppsn','ss']//string array names (save/load)
 sv=[[],[],[],[],'','']// used in save/load functions
 cc=['#B44','#B4B','#B80','#BB4','#4B4','#44B','#4BB','#BBB','#888','#000']//color codes for stat number, etc
 ncon1=['b','ch','d','f','g','h','j','k','l','m','n','p','q','qu','r','s','sh','t','v','w','x','y','z']
@@ -82,14 +79,16 @@ ncon3=['el','la','v','an','or','ar','ri','ice','is','er','st','al','ea','b','no'
 nvow1=['a','an','ang','ao','e','en','eng','ei','i','in','o','ong','u','uo','ua']
 cfimg=["bgimg","tail","eff1","body","eff2","eyes","hair","back","bottom","top","hair2"]//the image layers to load in the character frame
 ptrait=['character(0Bad,1Neutral,2Good)','luck(0Bad,1Poor,2Normal,3Good,#Extreme)','charm(0Bad,1Low,2Normal,3Good,4High)','personality(0)','fame(0Unknown,1Low,2Medium,3High,4Exreme)','knowledge(0Stupid,1Poor,2Normal,3Good,Very Good)']
-races={'1':'Demon','2':'Furry','3':'Human','4':'Abyss','5':'Spirit','10':'Demon','20':'Furry','30':'Human','40':'Abyss','50':'Spirit','11':'Succubus','21':'Fox','31':'Cleric','41':'Curse','51':'Ghost','12':'Zombie','22':'Dog','32':'Alchemist','42':'Mimic','52':'God','13':'Vampire','23':'Cat','33':'Cultivator','43':'Slime','53':'Elemental'}
+races=['Demon','Human','Abyss','Spirit']
+racev=[['None','Succubus','Zombie','Vampire'],['None','Fox','Dog','Cat'],['None','Curse','Mimic','Slime'],['None','Ghost','God','Elemental']]
+racevm=[['2!2!2','1!2!3','4!1!1','1!3!2'],['2!2!2','1!2!3','3!2!1','1!3!2'],['3!1!2','1!2!3','1!3!2','3!2!1'],['1!2!3','1!3!2','1!1!4','1!4!1']]
 matform=[x,'Ingot','Bottle','Crystal','Bag','Chunk','Ball','Stack']//the type of container for a material
 affcolor=['Black','White','Red','Green','Blue']
-afftype=['none','skill','weapon','physical','energy','mental','effect','faith']
+afftype=['none','skill','weapon','physical','energy','spiritual','faith','effect']
 matcraft=['Cooking','Smithing','Formation']//crafting uses for materials
-terrains=['desert','forest','jungle','mountain','sea','snow','swamp']
-majorfeatures=['city','empty','fort','mine','sect','village']
-minorfeatures=['ancient','cave','den','empty','hideout','labyrinth','lake','portal','shelter','shrine']
+terrains=['desert','forest','jungle','mountains','sea','snow','swamp']
+majorfeatures=['city','fort','mine','sect','village']
+minorfeatures=['ancient','cave','cemetery','den','empty','hideout','labyrinth','lake','portal','shelter','shrine']
 direction=['North','Northeast','East','Southeast','South','Southwest','West','Northwest']
 rdirection=[1,1,0,-1,-1,-1,0,1,0,1,1,1,0,-1,-1,-1]
 //script category arrays

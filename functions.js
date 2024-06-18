@@ -2,6 +2,7 @@ String.prototype.cut=function(index,length,add) {if(index<0) {index+=this.length
 String.prototype.arr=function(index,replace,divider='!') {let a=this.split(divider);if(replace==undefined){return(a[index])}else{a[index]=replace;return(a.join(divider))}}//Treat a string as an array with dividers. ex: '123!456' is ['123','456']
 Array.prototype.cyc=function(index){if(index<0){return(this.toReversed()[Math.abs(index)%this.length])};return(this[index%this.length])}//Get the overflow index value. ex: [1,2,3].cyc(1)==2 and [1,2,3].cyc(4)==2
 //use functions
+function heal($a=100,$b=0,$c) {let $1=($d)=>{window[$d][0]+=Math.floor((window[$d][1]/100)*$a)+$b;if(window[$d][0]>window[$d][1]){window[$d][0]=window[$d][1]}};if($c==undefined){['hp','ep','sp'].forEach($1)}else{$1($c)}}//heal(%,amount,type)
 function loc($a=0,$b=0) {let $1=wsize[cworldid];let $2=[$a,$b];if($a=='d'){$2[0]=rdirection[pos[2]];$2[1]=rdirection[pos[2]+8]};return((cycle($1,pos[0]+$2[0])*$1)+cycle($1,pos[1]+$2[1]))}//returns the chunk index for the relative pos (or direction if loc('d'))
 function genchunks() {let $1=Array(wsize[cworldid]*wsize[cworldid]);chunk=Array.from($1,()=>{return(`${terrains[rng(terrains.length-1)]}!${majorfeatures[rng(majorfeatures.length-1)]}!${minorfeatures[rng(minorfeatures.length-1)]}`)});chunkd=Array.from($1,()=>{return("!!!!")})}
 function genpsn() {return(window['namegen'+namegennum]()+'!'+rng(81,18)+'!'+rng(2)+rng(4)+rng(4)+rng(0)+rng(4)+rng(3))}
@@ -11,7 +12,7 @@ function perc($a,$b) {return((100*Number($a/$b)).toFixed())}
 function next($a=_,$b=2) {let $1=document.createElement("script");if($b>1){_=$a};document.body.appendChild($1);$1.id="script"+$b;$1.src="content/"+$a+".js"}
 function xp($a,$b=0,$c=1) {skill[$a]+=Math.floor($b*($c/skill[$a-1]));if(skill[$a]>99){skill[$a]-=100;skill[$a-1]+=1}}//$a=index of xp in skill. $b=xp add amount. $c=level of xp.
 function num($a) {let $1=$a;if($1<10&&$1>-10){if($1<0){$1='-0'+Math.abs($1)}else{$1='0'+$1}};return($1)}
-function ptime($a) {let $2=[60,24,28,14];time.forEach(($b,$c)=>{time[$c]+=$a[$c]});$2.forEach(($b,$c)=>{if(time[$c]>=$2[$c]){time[$c]-=$2[$c];time[$c+1]+=1}});if(time[3]==0&&time[2]>0){time[3]+=1};fun('hour',time[1]+':'+num(time[0]))}
+function ptime($a) {let $2=[60,24,28,14];$a.forEach(($b,$c)=>{time[$c]+=$b});$2.forEach(($b,$c)=>{if(time[$c]>=$b){time[$c]-=$b;time[$c+1]+=1}});if(time[3]==0&&time[2]>0){time[3]+=1;time[2]-=1};fun('hour',time[1]+':'+num(time[0]))}
 //html functions
 function btn($a,$b) {return('<button onclick="'+$b+'"><big>'+$a+'</big></button>')}
 function col($a,$b) {return("<font color="+$a+">"+$b+"</font>")}
@@ -37,9 +38,9 @@ function sbu($a=['hp','ep','sp']) {if(Array.isArray($a)){$a.forEach(sbu)}else{le
 function end($a=2) {elm("script"+$a).remove();if($a==1||$a==3){sbu()};if($a==2||$a==3){fun('txt',t);fun('nav',n)}}
 function elm($a){return(document.getElementById($a))}
 //save/load functions
-function varld() {sv=sv.split('¦');let $1=arrn.length;sv[0]=sv[0].split('§');while($1>0){$1-=1;window[arrn[$1]]=sv[0][$1].split('°').map(Number)};$1=arrs.length;sv[1]=sv[1].split('§');while($1>0){$1-=1;window[arrs[$1]]=sv[1][$1].split('°')};t=sv[2];n=sv[3];reset()}
-function varsv() {sv=[[],[],[],[],'',''];reset('s');let $1=0;while($1<arrn.length){sv[0].push(window[arrn[$1]].join('°'));$1+=1};sv[0]=sv[0].join('§');$1=0;while($1<arrs.length){console.log($1);sv[1].push(window[arrs[$1]].join('°'));sv[1]=sv[1].join('§');$1+=1};sv[2]=t;sv[3]=n;sv=sv.join("¦")}
-function reset($a) {let $1;let $2;if($a=='s'){ss=[];sn=[];$1=($b)=>ss.push(window[$b]);$2=($b)=>sn.push(window[$b])}else{$1=($b,$c)=>window[$b]=ss[$c];$2=($b,$c)=>window[$b]=sn[$c]};stringv.forEach($1);numv.forEach($2);sbu()}
+function varld() {sv=sv.split('¦');sv[0]=sv[0].split('§');arrn.forEach(($a,$b)=>{window[arrn[$b]]=sv[0][$b].split('°').map(Number)});sv[1]=sv[1].split('§');arrs.forEach(($a,$b)=>{window[arrs[$b]]=sv[1][$b].split('°')});t=sv[2];n=sv[3];reset()}
+function varsv() {sv=[[],[],[],[],'',''];reset('s');arrn.forEach(($a,$b)=>{sv[0].push(window[arrn[$b]].join('°'))});sv[0]=sv[0].join('§');arrs.forEach(($a,$b)=>{sv[1].push(window[arrs[$b]].join('°'))});sv[1]=sv[1].join('§');sv[2]=t;sv[3]=n;sv=sv.join("¦")}
+function reset($a) {let $1;let $2;if($a=='s'){ss=[];sn=[];$1=($b)=>ss.push(window[$b]);$2=($b)=>sn.push(window[$b])}else{$1=($b,$c)=>window[$b]=ss[$c];$2=($b,$c)=>window[$b]=sn[$c];fun('txt',t);fun('nav',n);sbu();ptime([0])};strv.forEach($1);numv.forEach($2)}
 function save($a) {varsv();if($a=='file'){elm("fdl").href="data:text/plain,"+encodeURIComponent(sv);elm("fdl").download="UG Save ("+date()+").txt";elm("fdl").click()}else{localStorage["UG "+$a]=sv;saves[$a]=date();localStorage.UGS=saves.join()}}
 function load($a) {sv=localStorage["UG "+$a];varld()}
 async function loadfile($a) {sv=await $a.text();varld()}
