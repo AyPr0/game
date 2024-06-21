@@ -15,13 +15,13 @@
     case 2://race
         tmpn=3;race[0]='00'
         t=`What are you?<br><br>Demons and humans are enemies. Abyss and Spirits are enemies.`
-        n=`Race: \${lst('bod',"Demon:0,Human:1,Abyss:2,Spirit:3","race[0]=race[0].cut(0,1,elm('bod').value)")} | \${btn('mystery',"race[0]=race[0].cut(0,1,${rng(3)});next()")} | \${btn('next',"next()")}`; break;
+        n=`Race: \${lst('bod',"Demon:0,Human:1,Abyss:2,Spirit:3","race[0]=elm('bod').value+0")} | \${btn('mystery',"race[0]='${rng(3)}0';next()")} | \${btn('next',"next()")}`; break;
     case 3://race variant
         tmpn=4
         hp[1]=5;ep[1]=5;sp[1]=5;sbu()
         let $2='';switch(1*race[0][0]){case 0:{$2='none:0,Succubus:1,Zombie:2,Vampire:3'}break;case 1:{$2='none:0,Fox:1,Dog:2,Cat:3'}break;case 2:{$2='none:0,Curse:1,Mimic:2,Slime:3'}break;case 3:{$2='none:0,Ghost:1,God:2,Elemental:3'}}
         t=`Choose your variant.<br><br>The race and variant will affect your base stats.`;
-        n=`Variant: \${lst('a1',"${$2}","race[0]=race[0].cut(1,1,elm('a1').value)")}<br><br>\${btn('mystery',"race[0]=race[0].cut(1,1,${rng(3)});next()")} | \${btn('next',"next()")}`; break;
+        n=`Variant: \${lst('a1',"${$2}","race[0]=race[0][0]+elm('a1').value")}<br><br>\${btn('mystery',"race[0]=race[0][0]+${rng(3)};next()")} | \${btn('next',"next()")}`; break;
     case 4://world settings
         tmpn=5
         let $3=racevm[race[0][0]][race[0][1]];hp[1]*=$3.arr(0);ep[1]*=$3.arr(1);sp[1]*=$3.arr(2);heal();sbu()
