@@ -1,25 +1,25 @@
 NOTES:
 
-- working on game sytems (crafting, inventory, item types)
+- working on adding content (exploration, interactions, events, etc)
 
 EXPECTED ISSUES:
 
-1. problems with saving and loading vairables and arrays
-1.5. problems with saving and loading in general
-2. problems with intro content
-3. broken functions
+1. problems with saving and loading (especially after updates)
+2. broken/useless functions and variables
 
-TODO (NOT ORDERED BY PRIORITY):
+TODO (NO PARTICULAR ORDER / SUBJECT TO CHANGE):
 
 1. add images and character designer (there are some variables made for this) (low prio)
-2. add world levels (after content)
-3. add content (after world gen/saves)
-4. add combat (after character gen probably)
+2. add multiple worlds (after content)
+3. add content (in progress)
+4. add combat (after content)
 5. add settings (low prio)
 6. add npc generation and interactions (after content)
 7. verify function functionality
+8. add race specialties
+9. add character stats
 
 CHANGES FROM OLD VERSION:
 
 -changed variables and functions to be a little more readable by using comments
--content has been removed for upgrade to procedural generation style
+-previous content has been removed for update to procedural generation style
