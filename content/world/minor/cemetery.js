@@ -26,10 +26,29 @@
             break;
         case 6://robing grave
             t="You decide to rob the grave."
-            n=`\${btn("dig","")}`//random loot gen/chance that the keeper might see you
+            n=`\${btn("dig","tmpn=7;next()")}`//random loot gen(get a random amount of julry betwee 1 and 5 that can be braselet or neklas or mix of the two)/chance that the keeper might see you(take away anything you stole and get kiked out random chanse of it hapening)
+            //chase of getting metiral money chasce that the spirit becomes dvengful and attacks
             break;
-        }       
+        case 7://loot
+            tmp=rng(2)    
+            tmp=["a gold ingot","a small bag of money","nothing"][tmp];['mat','mata','matt','matf','matc','matr']
+            t=`you find ${tmp}`
+            n=`${btn("take it","if(rng(2)==0){tmpn=8;next()}else{tmpn=9;next()}")} or ${btn("leave it","tmpn=10;next()")}`
+            break;
+        case 8://fight
+            t="You approach a grave."
+            n=`\${btn("respect the dead","fun('txt','Thank you.')")} | \${btn("rob","tmpn=6;next()")}`
+            break;
+        case 9://take item
+            t="You approach a grave."
+            n=`\${btn("respect the dead","fun('txt','Thank you.')")} | \${btn("rob","tmpn=6;next()")}`
+            break;  
+        case 10://leav it
+            t="You approach a grave."
+            n=`\${btn("respect the dead","fun('txt','Thank you.')")} | \${btn("rob","tmpn=6;next()")}`
+            break;  
+        }      
     tmpn=[0,0,0,1,1,2,5][tmpn]
-    n+=` | ${btn("back","tmpn="+tmpn+";next()")}`
+    if(tmpn<7){n+=` | ${btn("back","tmpn="+tmpn+";next()")}`}
     end()
 })()
