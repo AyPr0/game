@@ -2,14 +2,14 @@
     switch(tmpn){
         case 0://entrance
             if(sp[0]<1){
-                t="there is a cemetery ahead of you but you are to weak to enter"
-                n=`\${btn("leave","next(w+'major/'+chunk[loc()].arr(1))")}`}
+                t="There is a cemetery ahead of you, but you are to weak to enter it."
+                n=`\${btn("leave","tmp=x;tmpn=0;next(w+'major/'+chunk[loc()].arr(1))")}`}
             else{
-                t=`you enter the cemetery. There is a chapel ahead and some graves near by.`;
+                t=`You enter the cemetery. There is a chapel ahead and some graves nearby.`;
                 n=`\${btn("to chapel","tmpn=1;next()")} | \${btn("to graves","tmpn=2;next()")} | \${btn("leave","next(w+'major/'+chunk[loc()].arr(1))")}`}
             break;
         case 1://inside chapel
-            t=`you've enterd the chapel`;
+            t=`You are in the chapel`;
             n=`\${btn("pray","tmpn=3;next()")} | \${btn("search","tmpn=4;next()")}`
             break;
         case 2://walking around
@@ -36,7 +36,7 @@
         case 7://loot
             tmp=rng(2)    
             tmp=["a gold ingot","a small bag of money","nothing"][tmp]
-            t=`you find ${tmp}`
+            t=`you find ${tmp}.`
             if(tmp=="nothing"){
                 n=`${btn("leave","tmpn=2;next()")}`}
             else{
@@ -46,10 +46,10 @@
         case 8://fight
             sp[0]-=Math.max(0,10-def[2])
             if(sp[0]<1){
-                t="a gost attacks you but you are to weak to fight back"
+                t="A ghost attacks you, but you are to weak to fight back."
                 n=`\${btn("escape","tmpn=0;next()")}`}
             else{
-                t="a gost attacks you but you fight it off"
+                t="A ghost attacks you, but you manage fight it off."
                 n=`\${btn("walk away","tmpn=2";next())}`} 
             sbu("sp")
             break;

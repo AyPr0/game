@@ -30,7 +30,7 @@
     case 5://start
         tmpn=7
         t=`You can now enter the world.`
-        n=`\${btn('enter',"tmpn=50;tmp2='in';wname[0]=window['namegen'+namegennum]();genchunks();saving='T';next(w+'terrain/'+chunk[loc()].arr(0))")}`;break;
+        n=`\${btn('enter',"tmpn=50;tmp2='in';wname[0]=window['namegen'+namegennum]();genchunks();saving='T';next('other/explore')")}`;break;
     }; if(tmpn>1){n+=`<br><br>\${btn('back',"tmpn-=2;next()")}`}
     end()
 })()
