@@ -16,10 +16,3 @@ TODO (NO PARTICULAR ORDER / SUBJECT TO CHANGE):
 5. add settings (low prio)
 6. add npc generation and interactions (after content)
 7. verify function functionality
-8. add race specialties
-9. add character stats
-
-CHANGES FROM OLD VERSION:
-
--changed variables and functions to be a little more readable by using comments
--previous content has been removed for update to procedural generation style
